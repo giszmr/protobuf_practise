@@ -13,12 +13,9 @@ void PromptForAddress(Person* person)
 	cin >> id;
 	person->set_id(id);
 	cin.ignore(256, '\n');
-	cout << "personid=";
-	cout << person->id() << endl;
 	
 	cout << "enter name: ";
 	getline(cin, *person->mutable_name());
-	cout << "name=" << person->name() << endl;
 
 	cout << "enter email address (blank for none): ";
 	string email;
@@ -27,7 +24,6 @@ void PromptForAddress(Person* person)
 	{
 		person->set_email(email);
 	}
-	cout << "email=" << email << endl;
 
 	while(true)
 	{
@@ -54,7 +50,6 @@ void PromptForAddress(Person* person)
 		} else {
 			cout << "unknown phone type" << endl;
 		}
-		cout << "phone=" << phone_number->number() << " type=" << phone_number->type() << endl;
 	}
 }
 
@@ -93,11 +88,6 @@ int main(int argc, char* argv[]) {
 		options.always_print_primitive_fields = false;
 		google::protobuf::util::MessageToJsonString(address_book, &str, options);
 		output << str << endl;
-/*		if (!address_book.SerializeToOstream(&output)) {
-			cerr << "failed to write address book" << endl;
-			return -1;
-		}
-*/
 	}
 
 	google::protobuf::ShutdownProtobufLibrary();
